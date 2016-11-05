@@ -7,5 +7,3 @@ out/
 src/test/resources/
 *.jar
 !gradle-wrapper.jar
-
-
