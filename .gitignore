@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+/.idea/
+/.gradle/
+build/
+out/
+src/test/resources/
+*.jar
+!gradle-wrapper.jar
+
+
