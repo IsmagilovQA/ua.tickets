@@ -35,27 +35,32 @@ public class DatePicker {
      * @param args
      */
     public static void main(String[] args) {
-        Date date = new Date().setDate(1);
+        Date date = new Date().setDate(24);
         System.out.println(format("%s.%s", date.getDay(), date.getMonth()));
     }
 
     private static class Date {
         private int day = 0, month = 0;
 
+        /**
+         * Calculation of date
+         * @param value
+         * Not more 30
+         * @return
+         * new Date()
+         */
         Date setDate(int value){
-            int lastDayOfCurrentMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-            int futureDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + value;
-            int futureMonth = Calendar.getInstance().get(Calendar.MONTH);
-            while (futureDay > lastDayOfCurrentMonth) {
-                futureDay -= lastDayOfCurrentMonth;
-                futureMonth++;
-                if(12 == futureMonth) {
+            int lastDayOfCurrentMonth = Calendar.getInstance().getActualMaximum(Calendar.DATE);
+            this.day = Calendar.getInstance().get(Calendar.DATE)+value;
+            this.month = Calendar.getInstance().get(Calendar.MONTH);
+            while (day > lastDayOfCurrentMonth) {
+                day -= lastDayOfCurrentMonth;
+                month++;
+                if(12 == month) {
                     lastDayOfCurrentMonth = 31;
-                    futureMonth=0;
+                    month=0;
                 }
             }
-            this.day = futureDay;
-            this.month = futureMonth;
             return this;
         }
 
