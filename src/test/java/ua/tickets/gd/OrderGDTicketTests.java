@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static ua.tickets.utils.Random.generateRandomEmail;
 import static ua.tickets.utils.Random.generateRandomString;
 
-public class FirstTest extends BaseTest {
+public class OrderGDTicketTests extends BaseTest {
 
     @Before
     public void before(){

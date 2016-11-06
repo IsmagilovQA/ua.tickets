@@ -25,6 +25,13 @@ public class SearchForm {
         return this;
     }
 
+    /**
+     * Choose start point in visible list
+     * @param value
+     * Value that should be chosen
+     * @return
+     * itself
+     */
     @Step
     public SearchForm chooseDeparture(String value){
         this.fillDeparture(value);
@@ -33,6 +40,13 @@ public class SearchForm {
         return this;
     }
 
+    /**
+     * Choose end point in visible list
+     * @param value
+     * Value that should be chosen
+     * @return
+     * itself
+     */
     @Step
     public SearchForm chooseArrival(String value){
         this.fillArrival(value);
@@ -41,12 +55,26 @@ public class SearchForm {
         return this;
     }
 
+    /**
+     * Fill exact start point
+     * @param value
+     * Value that should be filled
+     * @return
+     * itself
+     */
     @Step
     public SearchForm fillDeparture(String value){
         this.fieldDeparture.sendKeys(value);
         return this;
     }
 
+    /**
+     * Fill exact end point
+     * @param value
+     * Value that should be filled
+     * @return
+     * itself
+     */
     @Step
     public SearchForm fillArrival(String value){
         this.fieldArrival.sendKeys(value);

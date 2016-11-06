@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static java.lang.String.format;
 
 public class DatePicker {
 
@@ -24,31 +25,34 @@ public class DatePicker {
     @Step
     public DatePicker setDateAfter(int value){
         Date date = new Date().setDate(value);
-        $$(String.format("[data-month='%s']", date.getMonth())).
+        $$(format("[data-month='%s']", date.getMonth())).
                 findBy(Condition.exactText(String.valueOf(date.getDay()))).click();
         return this;
     }
 
-    private class Date {
+    public static void main(String[] args) {
+        Date date = new Date().setDate(55);
+        System.out.println(format("%s.%s", date.getDay(), date.getMonth()));
+    }
+
+    private static class Date {
         private int day = 0, month = 0;
 
         Date setDate(int value){
-            int maxDayOfMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
-            int difDay;
-            int newDay = Calendar.DAY_OF_MONTH + value;
-            if (newDay > maxDayOfMonth){
-                difDay = newDay - maxDayOfMonth;
-                int newMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
-                day+=difDay;
-                if(newMonth < 12){
-                    this.month = newMonth;
+            int lastDayOfCurrentMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
+            int futureDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + value;
+            int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+            int futureMonth = currentMonth + 1;
+            while (futureDay > lastDayOfCurrentMonth){
+                if(12 >= futureMonth){
+                    futureDay-=lastDayOfCurrentMonth;
+                    futureMonth = month;
                 } else {
-                    this.day = newDay;
+                    futureDay-=lastDayOfCurrentMonth;
                 }
-            } else {
-                this.day = newDay;
-                this.month = Calendar.getInstance().get(Calendar.MONTH);
             }
+            this.day = futureDay;
+            this.month = futureMonth;
             return this;
         }
 
