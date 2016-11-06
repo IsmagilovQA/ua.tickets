@@ -47,7 +47,7 @@ public class DatePicker {
             int futureDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + value;
             int futureMonth = Calendar.getInstance().get(Calendar.MONTH);
             while (futureDay > lastDayOfCurrentMonth) {
-                futureDay = futureDay-lastDayOfCurrentMonth;
+                futureDay -= lastDayOfCurrentMonth;
                 futureMonth++;
                 if(12 == futureMonth) {
                     lastDayOfCurrentMonth = 31;
