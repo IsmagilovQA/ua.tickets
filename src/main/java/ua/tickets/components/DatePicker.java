@@ -30,8 +30,12 @@ public class DatePicker {
         return this;
     }
 
+    /**
+     * Testing calculation of future date
+     * @param args
+     */
     public static void main(String[] args) {
-        Date date = new Date().setDate(55);
+        Date date = new Date().setDate(1);
         System.out.println(format("%s.%s", date.getDay(), date.getMonth()));
     }
 
@@ -41,14 +45,13 @@ public class DatePicker {
         Date setDate(int value){
             int lastDayOfCurrentMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
             int futureDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + value;
-            int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-            int futureMonth = currentMonth + 1;
-            while (futureDay > lastDayOfCurrentMonth){
-                if(12 >= futureMonth){
-                    futureDay-=lastDayOfCurrentMonth;
-                    futureMonth = month;
-                } else {
-                    futureDay-=lastDayOfCurrentMonth;
+            int futureMonth = Calendar.getInstance().get(Calendar.MONTH);
+            while (futureDay > lastDayOfCurrentMonth) {
+                futureDay = futureDay-lastDayOfCurrentMonth;
+                futureMonth++;
+                if(12 == futureMonth) {
+                    lastDayOfCurrentMonth = 31;
+                    futureMonth=0;
                 }
             }
             this.day = futureDay;
