@@ -8,7 +8,7 @@ Example of using Element Object with Selenide, Allure for booking ticket on tick
 3. Go to Environment Variables
 4. Create variables same as in file "variables.txt"
 5. Open file "variables.txt"
-6. Run following commands:
+6. Run following command:
   
   `gradlew test`
   

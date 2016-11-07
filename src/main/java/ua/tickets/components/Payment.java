@@ -27,8 +27,4 @@ public class Payment {
         return this;
     }
 
-    public void cartDataShouldHaveError(){
-        $(".card_data samp.error").shouldBe(Condition.visible);
-    }
-
 }

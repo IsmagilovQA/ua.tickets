@@ -43,7 +43,8 @@ public class OrderGDTicketTests extends BaseTest {
         new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
         user.submit().
                 preloaderShouldBeVisible();
-        new Payment().fillCreditCartWithTestData().submit().cartDataShouldHaveError();
+        new Payment().fillCreditCartWithTestData().submit();
+        $(".card_data samp.error").shouldBe(Condition.visible);
     }
 
     @Test
