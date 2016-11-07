@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-/.idea/
-/.gradle/
+.idea/
+.gradle/
 build/
 out/
 src/test/resources/
