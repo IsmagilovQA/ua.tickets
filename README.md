@@ -1,5 +1,7 @@
 # ua.tickets
-Example of using ElementObject with Selenide for booking ticket on tickets.ua site
+Stack: Java, Gradle, Selenide, JUnit, Allure, HTMLTemplate. And based on Element Object pattern
+
+Example of using Element Object with Selenide, Allure for booking ticket on tickets.ua site
 
 1. Go to https://yadi.sk/d/ONWPb01QyCNcR
 2. Download it and unzip to local disk C:
