@@ -1,7 +1,7 @@
 package ua.tickets.utils;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.Configuration;
+import org.junit.Before;
 import org.junit.Rule;
 import ua.tickets.utils.report.CustomWatcher;
 
@@ -10,9 +10,9 @@ public abstract class BaseTest {
     @Rule
     public CustomWatcher watcher = new CustomWatcher();
 
-    protected static void clearCookies() {
-        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-        Selenide.sleep(300);
+    @Before
+    public void before(){
+        Configuration.baseUrl = "https://gd.tickets.ua/en";
     }
 
 }

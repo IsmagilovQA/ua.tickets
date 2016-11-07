@@ -24,52 +24,11 @@ public class DatePicker {
      */
     @Step
     public DatePicker setDateAfterCurrent(int value){
-        Date date = new Date().setDate(value);
-        $$(format("[data-month='%s']", date.getMonth())).
-                findBy(Condition.exactText(String.valueOf(date.getDay()))).click();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, value);
+        $$(format("[data-month='%s']", calendar.get(Calendar.MONTH))).
+                findBy(Condition.exactText(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))).click();
         return this;
-    }
-
-    /**
-     * Testing calculation of future date
-     * @param args
-     */
-    public static void main(String[] args) {
-        Date date = new Date().setDate(24);
-        System.out.println(format("%s.%s", date.getDay(), date.getMonth()));
-    }
-
-    private static class Date {
-        private int day = 0, month = 0;
-
-        /**
-         * Calculation of date
-         * @param value
-         * Not more 30
-         * @return
-         * new Date()
-         */
-        Date setDate(int value){
-            int lastDayOfCurrentMonth = Calendar.getInstance().getActualMaximum(Calendar.DATE);
-            this.day = Calendar.getInstance().get(Calendar.DATE)+value;
-            this.month = Calendar.getInstance().get(Calendar.MONTH);
-            while (day > lastDayOfCurrentMonth) {
-                day -= lastDayOfCurrentMonth;
-                month++;
-                if(12 == month) {
-                    lastDayOfCurrentMonth = 31;
-                    month=0;
-                }
-            }
-            return this;
-        }
-
-        int getDay() {
-            return this.day;
-        }
-        int getMonth() {
-            return this.month;
-        }
     }
 
 }
