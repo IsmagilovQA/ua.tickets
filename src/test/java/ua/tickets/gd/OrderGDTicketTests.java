@@ -1,6 +1,5 @@
 package ua.tickets.gd;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +11,7 @@ import ua.tickets.pages.gd.GDHomePage;
 import ua.tickets.pages.gd.SearchResult;
 import ua.tickets.utils.BaseTest;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static ua.tickets.utils.Random.generateRandomEmail;
 import static ua.tickets.utils.Random.generateRandomString;
 
@@ -21,7 +20,6 @@ public class OrderGDTicketTests extends BaseTest {
     @Before
     public void before(){
         Configuration.baseUrl = "https://gd.tickets.ua/en";
-        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -35,12 +33,30 @@ public class OrderGDTicketTests extends BaseTest {
                 selectThirdClassTicket().chooseFirstAvailableSit();
         new User(".passenger-form").fillLastName(testValue).fillFirstName(testValue).
         fillEmail(generateRandomEmail()).fillPhoneNumber("112223333").
-                acceptOfferta().submit();
-        $(".big-preloader__place").shouldBe(Condition.visible);
+                acceptOfferta().submit().
+                preloaderShouldBeVisible();
+
         new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
         new User(".passenger-form").fillLastName(testValue+2).fillFirstName(testValue+2)
-                .submit();
-        $(".big-preloader__place").shouldBe(Condition.visible);
+                .submit().
+                preloaderShouldBeVisible();
+        new Payment().fillCreditCartWithTestData().submit().cartDataShouldHaveError();
+    }
+
+    @Test
+    public void withoutSearchTest(){
+        String testValue = generateRandomString();
+        open("/preloader/~2210707~2218999~15.11.2016~2~ukraine~0~18.11.2016~~~0");
+        new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
+        new User(".passenger-form").fillLastName(testValue).fillFirstName(testValue).
+                fillEmail(generateRandomEmail()).fillPhoneNumber("112223333").
+                acceptOfferta().submit().
+                preloaderShouldBeVisible();
+
+        new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
+        new User(".passenger-form").fillLastName(testValue+2).fillFirstName(testValue+2)
+                .submit().
+                preloaderShouldBeVisible();
         new Payment().fillCreditCartWithTestData().submit().cartDataShouldHaveError();
     }
 }

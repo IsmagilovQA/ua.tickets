@@ -63,4 +63,8 @@ public class User {
         return this;
     }
 
+    public void preloaderShouldBeVisible(){
+        $(".big-preloader__place").shouldBe(Condition.visible);
+    }
+
 }
