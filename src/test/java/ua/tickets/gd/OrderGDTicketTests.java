@@ -23,7 +23,7 @@ public class OrderGDTicketTests extends BaseTest {
     }
 
     @Test
-    public void EndToEndTest(){
+    public void orderTicketWithSearchTest(){
         String testValue = generateRandomString();
         GDHomePage.openGDHomePage();
         new SearchForm().oneSideShouldBeChecked().setRoundTrip().
@@ -45,7 +45,7 @@ public class OrderGDTicketTests extends BaseTest {
     }
 
     @Test
-    public void withoutSearchTest(){
+    public void orderTicketWithoutSearchTest(){
         String testValue = generateRandomString();
         open("/preloader/~2210707~2218999~15.11.2016~2~ukraine~0~18.11.2016~~~0");
         new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
