@@ -23,7 +23,7 @@ public class DatePicker {
      * return itself
      */
     @Step
-    public DatePicker setDateAfter(int value){
+    public DatePicker setDateAfterCurrent(int value){
         Date date = new Date().setDate(value);
         $$(format("[data-month='%s']", date.getMonth())).
                 findBy(Condition.exactText(String.valueOf(date.getDay()))).click();
