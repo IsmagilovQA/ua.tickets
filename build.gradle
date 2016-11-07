@@ -49,17 +49,15 @@ tasks.withType(Test) {
         testTask.ignoreFailures = true
         testTask.systemProperties(
                 'file.encoding': 'UTF-8',
-                'selenide.baseUrl': String.format("http://%s", new URL(System.getProperty("url") ? System.properties['url'] as String: "http://null" as String).getHost()),
                 'webdriver.chrome.driver': 'src/main/resources/chromedriver.exe',
                 'selenide.browser': 'chrome',
                 'chrome.switches': '--disable-extensions',
                 'selenide.start.maximized': 'true',
                 'selenide.savePageSource': 'false',
+                'selenide.screenshots': 'false',
                 'selenide.timeout': '6000',
                 'selenide.pollingInterval':'50',
-                'selenide.fileDownload': 'HTTPGET',
-                'selenide.fastSetValue': 'true',
-                'selenide.screenshots': 'false'
+                'selenide.fastSetValue': 'true'
         )
 }
 
