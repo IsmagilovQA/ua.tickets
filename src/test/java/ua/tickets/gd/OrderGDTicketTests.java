@@ -31,13 +31,14 @@ public class OrderGDTicketTests extends BaseTest {
         new DatePicker().setDateAfter(3).setDateAfter(6);
         SearchForm.submitSearch().
                 selectThirdClassTicket().chooseFirstAvailableSit();
-        new User(".passenger-form").fillLastName(testValue).fillFirstName(testValue).
+        User user = new User(".passenger-form");
+        user.fillLastName(testValue).fillFirstName(testValue).
         fillEmail(generateRandomEmail()).fillPhoneNumber("112223333").
                 acceptOfferta().submit().
                 preloaderShouldBeVisible();
 
         new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
-        new User(".passenger-form").fillLastName(testValue+2).fillFirstName(testValue+2)
+        user.fillLastName(testValue+2).fillFirstName(testValue+2)
                 .submit().
                 preloaderShouldBeVisible();
         new Payment().fillCreditCartWithTestData().submit().cartDataShouldHaveError();
@@ -48,13 +49,14 @@ public class OrderGDTicketTests extends BaseTest {
         String testValue = generateRandomString();
         open("/preloader/~2210707~2218999~15.11.2016~2~ukraine~0~18.11.2016~~~0");
         new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
-        new User(".passenger-form").fillLastName(testValue).fillFirstName(testValue).
+        User user = new User(".passenger-form");
+        user.fillLastName(testValue).fillFirstName(testValue).
                 fillEmail(generateRandomEmail()).fillPhoneNumber("112223333").
                 acceptOfferta().submit().
                 preloaderShouldBeVisible();
 
         new SearchResult().selectThirdClassTicket().chooseFirstAvailableSit();
-        new User(".passenger-form").fillLastName(testValue+2).fillFirstName(testValue+2)
+        user.fillLastName(testValue+2).fillFirstName(testValue+2)
                 .submit().
                 preloaderShouldBeVisible();
         new Payment().fillCreditCartWithTestData().submit().cartDataShouldHaveError();
