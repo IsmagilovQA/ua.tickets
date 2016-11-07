@@ -16,7 +16,7 @@ public class SearchResult {
         $("[data-car-class='third'] a").click();
         return this;
     }
-//.one_offer.active
+
     @Step
     public SearchResult chooseFirstAvailableSit(){
         $("a.one-seat").click();
