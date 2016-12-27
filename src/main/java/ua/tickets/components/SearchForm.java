@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import ru.yandex.qatools.allure.annotations.Step;
 import ua.tickets.pages.gd.SearchResult;
 
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SearchForm {
@@ -21,7 +21,7 @@ public class SearchForm {
 
     @Step
     public SearchForm setRoundTrip(){
-        $(byXpath("//*[@id='round_trip']//..")).click();
+        $(by("for", "round_trip")).click();
         return this;
     }
 
@@ -50,7 +50,7 @@ public class SearchForm {
     @Step
     public SearchForm chooseArrival(String value){
         this.fillArrival(value);
-        $("#ui-id-1 li strong").shouldHave(Condition.text(value));
+        $("#ui-id-2 li strong").shouldHave(Condition.text(value));
         this.fieldArrival.pressEnter();
         return this;
     }
@@ -65,6 +65,7 @@ public class SearchForm {
     @Step
     public SearchForm fillDeparture(String value){
         this.fieldDeparture.sendKeys(value);
+        $(".btn-clear").should(Condition.visible);
         return this;
     }
 
@@ -78,6 +79,7 @@ public class SearchForm {
     @Step
     public SearchForm fillArrival(String value){
         this.fieldArrival.sendKeys(value);
+        $(".btn-clear").should(Condition.visible);
         return this;
     }
 

@@ -21,8 +21,8 @@ public class OrderGDTicketTests extends BaseTest {
         String testValue = generateRandomString();
         GDHomePage.openGDHomePage();
         new SearchForm().oneSideShouldBeChecked().setRoundTrip().
-                chooseDeparture("Dnipro").fillArrival("Lviv");
-        new DatePicker().setDateAfterCurrent(3).setDateAfterCurrent(6);
+                fillDeparture("Lviv").chooseArrival("Kiev");
+        new DatePicker().setStartDate(34).setEndDate(36);
         SearchForm.submitSearch().
                 selectThirdClassTicket().chooseFirstAvailableSit();
         User user = new User(".passenger-form");

@@ -16,7 +16,7 @@ class HTMLTemplate {
         SelenideLogger.addListener("reporter", new EventsCollector());
     }
 
-    void finish() {
+    void finish(String url) {
         EventsCollector logEventListener = SelenideLogger.removeListener("reporter");
         HtmlCanvas html = new HtmlCanvas();
         try {
@@ -33,7 +33,9 @@ class HTMLTemplate {
                         .td().content(String.valueOf(e.getDuration()))
                         ._tr();
             }
+            html.div().content("Fail on URL: "+url)._div();
             html._table()._html();
+            log.info(url);
             log.info(html.toHtml());
             AllureReportUtil.attachLog(html.toHtml());
         } catch (IOException e) {

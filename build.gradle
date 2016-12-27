@@ -34,7 +34,7 @@ repositories {
 dependencies {
     compile 'org.slf4j:slf4j-nop:+'
     compile 'org.aspectj:aspectjweaver:+'
-    compile 'com.codeborne:selenide:4.0'
+    compile 'com.codeborne:selenide:+'
     compile 'ru.yandex.qatools.allure:allure-junit-adaptor:1.4.+'
     compile 'org.rendersnake:rendersnake:+'
     compile 'io.github.bonigarcia:webdrivermanager:+'

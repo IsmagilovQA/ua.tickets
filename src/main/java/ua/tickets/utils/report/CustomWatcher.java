@@ -1,6 +1,7 @@
 package ua.tickets.utils.report;
 
 import com.codeborne.selenide.Screenshots;
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
@@ -25,15 +26,17 @@ public class CustomWatcher extends TestWatcher {
     @Override
     protected void succeeded(Description description) {
         if (onSucceededTest) {
+            String failUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
             AllureReportUtil.attachScreenshot();
-            report.finish();
+            report.finish(failUrl);
         }
     }
 
     @Override
     protected void failed(Throwable e, Description description) {
+        String failUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
         AllureReportUtil.attachScreenshot();
-        report.finish();
+        report.finish(failUrl);
     }
 
     @Override
